@@ -2,6 +2,7 @@ package br.com.ero.servidorpublicobdwebmvc.service;
 
 
 import br.com.ero.servidorpublicobdwebmvc.entity.ServidorPublico;
+import br.com.ero.servidorpublicobdwebmvc.repository.ServidorPublicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
