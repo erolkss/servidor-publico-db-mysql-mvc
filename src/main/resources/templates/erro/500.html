@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <div th:insert="fragments/navbar.html"> </div>
+    <div th:replace="~{fragments/navbar :: navbar}"> </div>
 
     <div class="jumbotron">
         <h2 class="alert alert-danger">Erro de código.</h2>

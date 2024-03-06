@@ -18,11 +18,11 @@ public class Error implements ErrorController {
             Integer statusCode = Integer.valueOf(status.toString());
             if (statusCode == HttpStatus.NOT_FOUND.value()) {
                 // Tratar erro 404 (Not Found)
-                return "404";
+                return "/erro/404";
 
             }else  if (statusCode == HttpStatus.INTERNAL_SERVER_ERROR.value()){
                 // Tratar erro 500 (Internal Server Error)
-                return  "500";
+                return  "/erro/500";
             }
         }
         return "error";
