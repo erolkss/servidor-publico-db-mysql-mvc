@@ -52,4 +52,30 @@ public class ServidorPubicoController {
 
     }
 
+    @GetMapping("/formularioNovoServidor")
+    public String formNovoServidor(Model model){
+        model.addAttribute("servidorPublico", new ServidorPublico());
+        return "novoservidorpublico";
+
+    }
+
+    @GetMapping("/cadastrarServidor")
+    public String cadastrarServidor(@ModelAttribute ServidorPublico novoservidor){
+        Optional<ServidorPublico> servidorEncontrado = servidorPublicoService.listByMatricula(novoservidor.getMatricula());
+        if (!servidorEncontrado.isPresent()){
+            servidorPublicoService.save(novoservidor);
+        } else {
+            return "redirect:/mensagem";
+        }
+        return "redirect:/listarServidores";
+
+    }
+
+
+    @GetMapping("/mensagem")
+    public String mensagem (Model model){
+        model.addAttribute("erroMatriculaExistente", true);
+        return "erro/mensagem";
+    }
+
 }
