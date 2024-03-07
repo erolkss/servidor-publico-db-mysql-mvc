@@ -45,7 +45,7 @@ public class ServidorPubicoController {
 
     }
 
-    @GetMapping("/editarServidor/{matricula}")
+    @PostMapping("/editarServidor/{matricula}")
     public String editarServidor( @ModelAttribute ServidorPublico servidor){
         servidorPublicoService.update(servidor);
         return "redirect:/listarServidores";
@@ -59,7 +59,7 @@ public class ServidorPubicoController {
 
     }
 
-    @GetMapping("/cadastrarServidor")
+    @PostMapping("/cadastrarServidor")
     public String cadastrarServidor(@ModelAttribute ServidorPublico novoservidor){
         Optional<ServidorPublico> servidorEncontrado = servidorPublicoService.listByMatricula(novoservidor.getMatricula());
         if (!servidorEncontrado.isPresent()){
