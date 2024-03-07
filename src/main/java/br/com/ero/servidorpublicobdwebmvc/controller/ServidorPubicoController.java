@@ -27,5 +27,11 @@ public class ServidorPubicoController {
 
     }
 
+    @GetMapping("/excluirServidor/{matricula}")
+    public String excluirServidor(@PathVariable long matricula){
+        servidorPublicoService.delete(matricula);
+        return "redirect:/listarServidores";
+
+    }
 
 }
