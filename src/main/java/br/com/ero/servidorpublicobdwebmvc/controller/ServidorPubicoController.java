@@ -1,12 +1,15 @@
 package br.com.ero.servidorpublicobdwebmvc.controller;
 
 
+import br.com.ero.servidorpublicobdwebmvc.entity.ServidorPublico;
 import br.com.ero.servidorpublicobdwebmvc.service.ServidorPublicoService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 public class ServidorPubicoController {
@@ -30,6 +33,21 @@ public class ServidorPubicoController {
     @GetMapping("/excluirServidor/{matricula}")
     public String excluirServidor(@PathVariable long matricula){
         servidorPublicoService.delete(matricula);
+        return "redirect:/listarServidores";
+
+    }
+
+    @GetMapping("/formularioEditarServidor/{matricula}")
+    public String formEditarServidor(@PathVariable long matricula, Model model){
+        Optional<ServidorPublico> servidorEncontrado = servidorPublicoService.listByMatricula(matricula);
+        model.addAttribute("servidorPublico", servidorEncontrado);
+        return "editarservidorpublico";
+
+    }
+
+    @GetMapping("/editarServidor/{matricula}")
+    public String editarServidor( @ModelAttribute ServidorPublico servidor){
+        servidorPublicoService.update(servidor);
         return "redirect:/listarServidores";
 
     }
